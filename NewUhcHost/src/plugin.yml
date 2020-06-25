@@ -3,3 +3,17 @@ version: 0.1-ALPHA
 description: The best new uhc host plugin
 author: Xen0Xys
 main: fr.xen0xys.newuhchost.NewUhcHost
+commands:
+  newuhchost:
+    description: Open host pannel
+    aliases: [nuh, uhc, host]
+    permission: newuhchost.newuhchost
+
+permissions:
+  newuhchost.*:
+    description: Gives access to all Inferno commands
+    children:
+      newuhchost.newuhchost: true
+  newuhchost.newuhchost:
+    description: Open host pannel
+    default: true

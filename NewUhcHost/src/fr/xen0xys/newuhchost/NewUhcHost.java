@@ -1,5 +1,6 @@
 package fr.xen0xys.newuhchost;
 
+import fr.xen0xys.newuhchost.commands.NewUhcHostCommand;
 import fr.xen0xys.newuhchost.events.OnPlayerJoin;
 import fr.xen0xys.newuhchost.events.OnPlayerQuit;
 import fr.xen0xys.newuhchost.models.User;
@@ -13,7 +14,7 @@ import java.util.UUID;
 
 public class NewUhcHost extends JavaPlugin {
 
-    private static HashMap<UUID, User> users;
+    private static HashMap<UUID, User> users = new HashMap<>();
     private static NewUhcHost instance;
 
     @Override
@@ -27,6 +28,7 @@ public class NewUhcHost extends JavaPlugin {
         instance = this;
         this.saveDefaultConfig();
         registerEvents();
+        registerCommands();
         addUsersToUserList();
     }
 
@@ -34,6 +36,10 @@ public class NewUhcHost extends JavaPlugin {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new OnPlayerJoin(), this);
         pm.registerEvents(new OnPlayerQuit(), this);
+    }
+
+    private void registerCommands(){
+        this.getCommand("newuhchost").setExecutor(new NewUhcHostCommand());
     }
 
     public static NewUhcHost getInstance(){

@@ -1,20 +1,25 @@
 package fr.xen0xys.newuhchost;
 
 import fr.xen0xys.newuhchost.commands.NewUhcHostCommand;
+import fr.xen0xys.newuhchost.events.OnInventoryClick;
 import fr.xen0xys.newuhchost.events.OnPlayerJoin;
 import fr.xen0xys.newuhchost.events.OnPlayerQuit;
+import fr.xen0xys.newuhchost.models.Host;
 import fr.xen0xys.newuhchost.models.User;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class NewUhcHost extends JavaPlugin {
 
-    private static HashMap<UUID, User> users = new HashMap<>();
+    private static final HashMap<UUID, User> users = new HashMap<>();
+    private static final List<Host> hosts = new ArrayList<>();
     private static NewUhcHost instance;
 
     @Override
@@ -36,6 +41,7 @@ public class NewUhcHost extends JavaPlugin {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new OnPlayerJoin(), this);
         pm.registerEvents(new OnPlayerQuit(), this);
+        pm.registerEvents(new OnInventoryClick(), this);
     }
 
     private void registerCommands(){
@@ -44,6 +50,9 @@ public class NewUhcHost extends JavaPlugin {
 
     public static NewUhcHost getInstance(){
         return instance;
+    }
+    public static List<Host> getHosts(){
+        return hosts;
     }
 
     private void addUsersToUserList(){

@@ -1,0 +1,5 @@
+name: NewUhcHost
+version: 0.1-ALPHA
+description: The best new uhc host plugin
+author: Xen0Xys
+main: fr.xen0xys.newuhchost.NewUhcHost

@@ -22,7 +22,7 @@ public enum CustomGamemode {
     private final ItemStack item;
     private final List<String> description;
 
-    CustomGamemode(String gamemode_name, Class<?> custom_host, ItemStack item, String description){
+    CustomGamemode(String gamemode_name, Class<? extends Host> custom_host, ItemStack item, String description){
         if(custom_host.isInstance(Host.class)){
             throw new ClassFormatException("Bad class");
         }

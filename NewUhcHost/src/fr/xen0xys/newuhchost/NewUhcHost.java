@@ -4,6 +4,7 @@ import fr.xen0xys.newuhchost.commands.NewUhcHostCommand;
 import fr.xen0xys.newuhchost.events.OnInventoryClick;
 import fr.xen0xys.newuhchost.events.OnPlayerJoin;
 import fr.xen0xys.newuhchost.events.OnPlayerQuit;
+import fr.xen0xys.newuhchost.events.OnWorldInit;
 import fr.xen0xys.newuhchost.models.Host;
 import fr.xen0xys.newuhchost.models.User;
 import org.bukkit.Bukkit;
@@ -21,9 +22,13 @@ public class NewUhcHost extends JavaPlugin {
     private static final HashMap<UUID, User> users = new HashMap<>();
     private static final List<Host> hosts = new ArrayList<>();
     private static NewUhcHost instance;
+    private static int random_game_value = 0;
 
     @Override
     public void onDisable() {
+        for(Host host: new ArrayList<>(hosts)){
+            host.stop();
+        }
         super.onDisable();
     }
 
@@ -42,6 +47,7 @@ public class NewUhcHost extends JavaPlugin {
         pm.registerEvents(new OnPlayerJoin(), this);
         pm.registerEvents(new OnPlayerQuit(), this);
         pm.registerEvents(new OnInventoryClick(), this);
+        pm.registerEvents(new OnWorldInit(), this);
     }
 
     private void registerCommands(){
@@ -52,7 +58,12 @@ public class NewUhcHost extends JavaPlugin {
         return instance;
     }
     public static List<Host> getHosts(){
+        random_game_value++;
         return hosts;
+    }
+
+    public static int getRandomGameValue(){
+        return random_game_value;
     }
 
     private void addUsersToUserList(){

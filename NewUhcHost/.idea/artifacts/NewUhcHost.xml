@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="NewUhcHost">
+    <output-path>$PROJECT_DIR$/../test_server/plugins</output-path>
+    <root id="archive" name="NewUhcHost.jar">
+      <element id="module-output" name="NewUhcHost" />
+    </root>
+  </artifact>
+</component>

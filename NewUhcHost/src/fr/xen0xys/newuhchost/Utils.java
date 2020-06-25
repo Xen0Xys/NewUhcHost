@@ -3,9 +3,10 @@ package fr.xen0xys.newuhchost;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 
-import java.io.File;
 import java.io.IOException;
 
 public class Utils {
@@ -18,15 +19,13 @@ public class Utils {
         System.out.println("[NewUhcHost]: Removing world " + world_name);
         World world = Bukkit.getWorld(world_name);
         Chunk[] chunks = world.getLoadedChunks();
-        for (Chunk chunk : chunks) {
-            chunk.unload(true);
+        for(Player player: world.getPlayers()){
+            player.teleport(new Location(Bukkit.getWorld("world"), 252, 96, 252)); // Setup lobby location
         }
-        Bukkit.unloadWorld(world, true);
+        Bukkit.unloadWorld(world, false);
 
-
-        File file = new File(world_name);
         try {
-            FileUtils.deleteDirectory(file);
+            FileUtils.deleteDirectory(world.getWorldFolder());
         } catch (IOException e) {
             e.printStackTrace();
         }

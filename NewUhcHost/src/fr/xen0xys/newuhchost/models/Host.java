@@ -2,37 +2,86 @@ package fr.xen0xys.newuhchost.models;
 
 import fr.xen0xys.newuhchost.NewUhcHost;
 import fr.xen0xys.newuhchost.Utils;
-import org.apache.commons.io.FileUtils;
 import org.bukkit.*;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.inventory.meta.ItemMeta;
 
-import java.io.File;
-
-import static org.bukkit.Bukkit.getServer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Host {
 
-    public ItemStack getHostItem(){
-        return new ItemStack(Material.GRASS);
-    }
 
     private World world = null;
     private final String world_name;
     private final Location spawn_location;
+    private final List<Player> game_masters = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
+    private final String gamemode;
 
-    public Host(){
-        this.world_name = "host_" + NewUhcHost.getRandomGameValue();
+    public Host(Player game_master, String gamemode){
+        this.world_name = Utils.getConfigValue("host_prefix") + Utils.getAvailableHostValue();
+        this.gamemode = gamemode;
         initializeWorld();
         spawn_location = new Location(Bukkit.getWorld(world.getName()), 252, 96, 252);
+        addGameMaster(game_master);
         System.out.println("[NewUhcHost]: " + this.world_name + " initialized");
     }
+
+    public void addGameMaster(Player player){
+        this.game_masters.add(player);
+        if(!isPlayerInGame(player)){
+            players.add(player);
+            player.teleport(getSpawnLocation());
+        }
+    }
+
+    public void addPlayer(Player player){
+        this.game_masters.add(player);
+        if(!isPlayerInGame(player)){
+            players.add(player);
+            player.teleport(getSpawnLocation());
+        }
+    }
+
+    public boolean isPlayerInGame(Player player){
+        for(Player local_player: new ArrayList<>(players)){
+            if(local_player.equals(player)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
     private void initializeWorld(){
         world = Bukkit.getWorld(world_name);
         if(world == null){
             world = Bukkit.createWorld(WorldCreator.name(world_name).environment(World.Environment.NORMAL).seed(0));
         }
+    }
+
+    public ItemStack getHostItem(){
+        ItemStack item = new ItemStack(Material.GRASS);
+        if(gamemode.equalsIgnoreCase("uhc"))
+            item = new ItemStack(Material.GOLDEN_APPLE);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(this.gamemode);
+        meta.setLore(Arrays.asList(getGameMastersString(), this.world_name));
+        item.setItemMeta(meta);
+        return item;
+    }
+
+    public String getGameMastersString(){
+        StringBuilder final_string = new StringBuilder();
+        for(Player game_master: this.game_masters){
+            final_string.append(game_master.getName()).append("; ");
+        }
+        return final_string.toString();
     }
 
     public World getWorld(){
@@ -43,6 +92,12 @@ public class Host {
     }
     public Location getSpawnLocation(){
         return this.spawn_location;
+    }
+    public List<Player> getPlayers(){
+        return this.players;
+    }
+    public List<Player> getGameMasters(){
+        return this.game_masters;
     }
 
     public void start(){

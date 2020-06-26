@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class GUI {
-    private Inventory inv;
+    private final Inventory inv;
 
     public GUI(int size, String name){
         this.inv = Bukkit.createInventory(null, size, name);

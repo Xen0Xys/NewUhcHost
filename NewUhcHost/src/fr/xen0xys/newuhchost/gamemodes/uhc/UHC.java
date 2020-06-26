@@ -9,5 +9,4 @@ public class UHC extends Host {
         super(game_master, "uhc");
     }
 
-
 }

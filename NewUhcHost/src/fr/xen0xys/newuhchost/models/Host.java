@@ -9,11 +9,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Host {
-
 
     private World world = null;
     private final String world_name;
@@ -55,8 +53,6 @@ public class Host {
         }
         return false;
     }
-
-
 
     private void initializeWorld(){
         world = Bukkit.getWorld(world_name);

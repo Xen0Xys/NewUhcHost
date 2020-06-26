@@ -11,7 +11,7 @@ public class NewUhcHostCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if(commandSender instanceof Player){
             Player player = (Player) commandSender;
-            player.openInventory(new HostGUI().getInventory());
+            player.openInventory(new HostGUI(player).getInventory());
         }
         return false;
     }

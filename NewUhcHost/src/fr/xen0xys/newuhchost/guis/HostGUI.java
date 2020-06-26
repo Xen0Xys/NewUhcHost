@@ -13,11 +13,12 @@ import java.util.List;
 
 public class HostGUI extends GUI implements InventoryHolder {
 
-    public HostGUI(){
+    public HostGUI(Player player){
         super(36, Language.HOST.getText());
         this.fillInventory();
         addCurrentHosts(NewUhcHost.getHosts());
-        this.getInventory().setItem(31, getCreateHostItem());
+        if(player.hasPermission("newuhchost.createhost"))
+            this.getInventory().setItem(31, getCreateHostItem());
     }
 
     public void addCurrentHosts(List<Host> hosts){

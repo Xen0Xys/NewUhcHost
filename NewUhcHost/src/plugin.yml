@@ -11,9 +11,13 @@ commands:
 
 permissions:
   newuhchost.*:
-    description: Gives access to all Inferno commands
+    description: Gives access to all NewUhcHost commands
     children:
       newuhchost.newuhchost: true
+      newuhchost.createhost: true
   newuhchost.newuhchost:
     description: Open host pannel
     default: true
+  newuhchost.createhost:
+    description: Player can create host
+    default: op

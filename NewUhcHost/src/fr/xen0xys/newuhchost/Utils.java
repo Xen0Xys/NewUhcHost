@@ -7,6 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Utils {
@@ -29,6 +30,16 @@ public class Utils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("[NewUhcHost]: Removed world " + world_name);
+    }
+
+    public static int getAvailableHostValue(){
+        int value = 0;
+        File file = new File("host_" + value);
+        System.out.println("Is file exist: " + file.exists());
+        while(file.exists()){
+            value++;
+            file = new File("host_" + value);
+        }
+        return value;
     }
 }

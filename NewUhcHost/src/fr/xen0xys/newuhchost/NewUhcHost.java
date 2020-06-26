@@ -22,7 +22,6 @@ public class NewUhcHost extends JavaPlugin {
     private static final HashMap<UUID, User> users = new HashMap<>();
     private static final List<Host> hosts = new ArrayList<>();
     private static NewUhcHost instance;
-    private static int random_game_value = 0;
 
     @Override
     public void onDisable() {
@@ -58,12 +57,7 @@ public class NewUhcHost extends JavaPlugin {
         return instance;
     }
     public static List<Host> getHosts(){
-        random_game_value++;
         return hosts;
-    }
-
-    public static int getRandomGameValue(){
-        return random_game_value;
     }
 
     private void addUsersToUserList(){

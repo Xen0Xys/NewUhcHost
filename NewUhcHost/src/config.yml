@@ -1,1 +1,7 @@
+# Change the plugin language, default: "EN_en"
+# For example, "EN_en", "FR_fr_, etc...
 language: EN_en
+
+# This change the world prefix, default: "host_"
+# For example, to default, first world name will be "host_0", second "host_1", etc...
+host_prefix: host_

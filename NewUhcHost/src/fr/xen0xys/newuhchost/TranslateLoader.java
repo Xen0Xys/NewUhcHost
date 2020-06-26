@@ -10,9 +10,9 @@ import java.io.InputStream;
 public class TranslateLoader {
     private final NewUhcHost plugin;
 
-    private final File configFile;
+    private File configFile;
     private FileConfiguration config = null;
-    private final String filename;
+    private String filename;
 
     public TranslateLoader(NewUhcHost plugin)
     {
@@ -39,7 +39,14 @@ public class TranslateLoader {
     {
         if (!this.configFile.exists())
         {
-            this.plugin.saveResource(filename, false);
+            try{
+                this.plugin.saveResource(filename, false);
+            }catch(IllegalArgumentException e){
+                this.filename = "languages/EN_en.yml";
+                this.configFile = new File(this.plugin.getDataFolder(), filename);
+                this.reload();
+                this.saveDefault();
+            }
         }
     }
 

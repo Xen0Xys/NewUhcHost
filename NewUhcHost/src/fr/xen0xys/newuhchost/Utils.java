@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class Utils {
     public static String getTranslationString(String value){
-        TranslateLoader handler = new TranslateLoader(NewUhcHost.getInstance()); // 'this' must be replaced with a JavaPlugin reference when used from any other classes.
+        TranslateLoader handler = new TranslateLoader(NewUhcHost.getInstance());
         return handler.getCaption(value);
     }
 
@@ -32,13 +32,17 @@ public class Utils {
         }
     }
 
+    public static String getConfigValue(String value){
+        return NewUhcHost.getInstance().getConfig().get(value).toString();
+    }
+
     public static int getAvailableHostValue(){
         int value = 0;
-        File file = new File("host_" + value);
+        File file = new File(getConfigValue("host_prefix") + value);
         System.out.println("Is file exist: " + file.exists());
         while(file.exists()){
             value++;
-            file = new File("host_" + value);
+            file = new File(getConfigValue("host_prefix") + value);
         }
         return value;
     }

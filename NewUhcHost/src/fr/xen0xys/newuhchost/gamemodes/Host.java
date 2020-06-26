@@ -1,6 +1,7 @@
-package fr.xen0xys.newuhchost.models;
+package fr.xen0xys.newuhchost.gamemodes;
 
 import fr.xen0xys.newuhchost.NewUhcHost;
+import fr.xen0xys.newuhchost.Structures;
 import fr.xen0xys.newuhchost.Utils;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -10,6 +11,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class Host {
 
@@ -24,7 +26,7 @@ public class Host {
         this.world_name = Utils.getConfigValue("host_prefix") + Utils.getAvailableHostValue();
         this.gamemode = gamemode;
         initializeWorld();
-        spawn_location = new Location(Bukkit.getWorld(world.getName()), 252, 96, 252);
+        spawn_location = new Location(Bukkit.getWorld(world.getName()), 0, 102, 0);
         addGameMaster(game_master);
         System.out.println("[NewUhcHost]: " + this.world_name + " initialized");
     }
@@ -57,8 +59,9 @@ public class Host {
     private void initializeWorld(){
         world = Bukkit.getWorld(world_name);
         if(world == null){
-            world = Bukkit.createWorld(WorldCreator.name(world_name).environment(World.Environment.NORMAL).seed(0));
+            world = Bukkit.createWorld(WorldCreator.name(world_name).environment(World.Environment.NORMAL).seed(6505837170832228537L));
         }
+        Structures.setSpawn(world);
     }
 
     public ItemStack getHostItem(){

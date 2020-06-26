@@ -3,7 +3,7 @@ package fr.xen0xys.newuhchost.guis;
 import fr.xen0xys.newuhchost.NewUhcHost;
 import fr.xen0xys.newuhchost.enums.CustomGamemode;
 import fr.xen0xys.newuhchost.enums.Language;
-import fr.xen0xys.newuhchost.models.Host;
+import fr.xen0xys.newuhchost.gamemodes.Host;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;

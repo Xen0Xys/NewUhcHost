@@ -5,7 +5,7 @@ import fr.xen0xys.newuhchost.events.OnInventoryClick;
 import fr.xen0xys.newuhchost.events.OnPlayerJoin;
 import fr.xen0xys.newuhchost.events.OnPlayerQuit;
 import fr.xen0xys.newuhchost.events.OnWorldInit;
-import fr.xen0xys.newuhchost.models.Host;
+import fr.xen0xys.newuhchost.gamemodes.Host;
 import fr.xen0xys.newuhchost.models.User;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

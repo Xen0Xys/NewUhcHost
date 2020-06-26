@@ -1,6 +1,6 @@
 package fr.xen0xys.newuhchost.gamemodes.uhc;
 
-import fr.xen0xys.newuhchost.models.Host;
+import fr.xen0xys.newuhchost.gamemodes.Host;
 import org.bukkit.entity.Player;
 
 public class UHC extends Host {

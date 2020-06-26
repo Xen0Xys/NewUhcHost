@@ -2,14 +2,11 @@ package fr.xen0xys.newuhchost.enums;
 
 import com.sun.org.apache.bcel.internal.classfile.ClassFormatException;
 import fr.xen0xys.newuhchost.Utils;
-import fr.xen0xys.newuhchost.gamemodes.uhc.UHC;
 import fr.xen0xys.newuhchost.models.Host;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

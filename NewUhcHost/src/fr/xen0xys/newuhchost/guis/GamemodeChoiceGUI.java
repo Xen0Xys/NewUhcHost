@@ -28,12 +28,12 @@ public class GamemodeChoiceGUI extends GUI implements InventoryHolder {
     public static void onClick(ItemStack item, Player player){
         for(CustomGamemode gamemode: CustomGamemode.values()){
             if(item.equals(gamemode.getItem())){
+                player.closeInventory();
                 try {
                     NewUhcHost.getHosts().add((Host) gamemode.getCustomHost().getConstructor(Player.class).newInstance(player));
                 } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
-                player.closeInventory();
             }
         }
     }

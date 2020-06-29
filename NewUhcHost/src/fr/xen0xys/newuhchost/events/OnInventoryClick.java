@@ -13,6 +13,9 @@ public class OnInventoryClick implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e){
         String inventory_name = e.getClickedInventory().getName();
+        if(inventory_name == null){
+            return;
+        }
         Player player = (Player) e.getWhoClicked();
         ItemStack item = e.getCurrentItem();
         if(inventory_name.equals(Language.HOST.getText())){

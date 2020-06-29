@@ -26,7 +26,7 @@ public class Host {
         this.world_name = Utils.getConfigValue("host_prefix") + Utils.getAvailableHostValue();
         this.gamemode = gamemode;
         initializeWorld();
-        spawn_location = new Location(Bukkit.getWorld(world.getName()), 0, 102, 0);
+        spawn_location = new Location(Bukkit.getWorld(world.getName()), 0, 150, 0);
         addGameMaster(game_master);
         System.out.println("[NewUhcHost]: " + this.world_name + " initialized");
     }

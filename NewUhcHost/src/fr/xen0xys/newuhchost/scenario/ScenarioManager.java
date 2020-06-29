@@ -30,6 +30,9 @@ public class ScenarioManager {
             System.out.println("[NewUhcHost]: the scenario can't be activated");
         }else{
             List<Scenario> scenarios = this.scenarios.get(host);
+            if(scenarios == null){
+                scenarios = new ArrayList<>();
+            }
             scenarios.add(scenario);
             this.scenarios.put(host, scenarios);
             Bukkit.getPluginManager().registerEvents(scenario, this.plugin);

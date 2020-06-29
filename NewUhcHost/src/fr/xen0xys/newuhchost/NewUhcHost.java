@@ -7,6 +7,7 @@ import fr.xen0xys.newuhchost.events.OnPlayerQuit;
 import fr.xen0xys.newuhchost.events.OnWorldInit;
 import fr.xen0xys.newuhchost.gamemodes.Host;
 import fr.xen0xys.newuhchost.models.User;
+import fr.xen0xys.newuhchost.scenario.ScenarioManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
@@ -22,6 +23,7 @@ public class NewUhcHost extends JavaPlugin {
     private static final HashMap<UUID, User> users = new HashMap<>();
     private static final List<Host> hosts = new ArrayList<>();
     private static NewUhcHost instance;
+    private static ScenarioManager scenario_manager;
 
     @Override
     public void onDisable() {
@@ -35,6 +37,7 @@ public class NewUhcHost extends JavaPlugin {
     public void onEnable() {
         super.onEnable();
         instance = this;
+        scenario_manager = new ScenarioManager(this);
         this.saveDefaultConfig();
         registerEvents();
         registerCommands();
@@ -58,6 +61,9 @@ public class NewUhcHost extends JavaPlugin {
     }
     public static List<Host> getHosts(){
         return hosts;
+    }
+    public static ScenarioManager getScenarioManager(){
+        return scenario_manager;
     }
 
     private void addUsersToUserList(){

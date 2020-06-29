@@ -54,6 +54,8 @@ public class CutClean extends Scenario implements Listener {
                 if(player.getGameMode() == GameMode.SURVIVAL && isRequirePickaxeLevel(player.getItemInHand().getType(), 2))
                     this.getHost().getWorld().dropItem(block_location, new ItemStack(Material.GOLD_INGOT, getItemNumberByFortune(player.getItemInHand())));
                 break;
+            default:
+                break;
         }
         block.setType(Material.AIR);
     }
@@ -75,6 +77,8 @@ public class CutClean extends Scenario implements Listener {
                     return level <= 3;
                 case DIAMOND_PICKAXE:
                     return level <= 4;
+                default:
+                    return true;
             }
         }
         return true;
